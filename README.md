@@ -21,7 +21,7 @@ Babel nos permite preparar nuestro proyecto para que funcione en todos los naveg
 Para continuar, cramos un archivo de configuración a babel creando `.babelrc` en la raiz del proyecto.
 
 Creamos un objeto para colocar los presets y plugins que vamos a utilizar, además de la configuración para babel. Adicional, lo agregamos al webpack.conf creando modules así:
-````json
+```json
 module: {
     rules: [ // Establesemos reglas
         {
@@ -36,3 +36,23 @@ module: {
 ```
 
 Y para recompilar nuestro proyecto podemos ejecutar el script creado antes `npm run build`.
+
+## Babel con HTML
+
+Para permitir que babel trabaje con HTML debemos de instalar un paquete con `npm install html-webpack-plugin -D`. Una vez instalado lo agregamos al archivo webpack.config como una constante.
+
+Adicional, agregamos en los módulos a exportar un objeto para los pligins que vamos a utilizar:
+
+```json
+plugins:[
+        new HtmlWebpackPlugin({
+            inject: true,
+            template: './public/index.html',
+            filename: './index.html'
+        })
+    ]
+```
+Con esto corremos el comando build y revisamos que el rachivo html y el js estén en la carpeta dist, con esto validamos que babel acaba de compilarnos el proyecto de tal forma que sea compatible y lo màs optimizado posible.
+
+Para correrlo en modo dev, podemos agregar un nuevo script `"dev": "webpack --mode development"`.
+
