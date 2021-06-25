@@ -8,5 +8,16 @@ module.exports = {
     },
     resolve:{
         extensions: ['.js' ] // extenciones de los archivos que vamos a usar en el proyecto
-    }
+    },
+    module: {
+        rules: [
+            {
+                test: /\.m?js$/, // extensiones (Expresión regular para ubicar solo estos archivos .mjs o .js)
+                exclude: /node_modules/, // excluye los archivos que estan dentro de node_modules
+                use:{
+                    loader: 'babel-loader'
+                }
+            }
+        ]
+    },
 }
